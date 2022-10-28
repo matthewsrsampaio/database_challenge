@@ -23,10 +23,10 @@ where pc.new_price > pc.old_price and pc.change_date between '2016-01-01' and '2
 
 select
 count(pc.listing_id) as 'Número_de_imóveis_com_aumento_de_preço_em_2016',
-((pc.new_price)/bua.built_area) as 'novoPreço/m²',
-((pc.old_price)/bua.built_area) as 'velhoPreço/m²',
-(((pc.new_price)/bua.built_area)-((pc.old_price)/bua.built_area)) as 'aumento_preço/m²',
-avg((((pc.new_price-pc.old_price)/bua.built_area)/((pc.old_price)/bua.built_area))*100) as 'percentual_aumento_médio_preço/m²',
+cast(((pc.old_price)/bua.built_area) as decimal(10,2)) as 'velhoPreço/m²',
+cast(((pc.new_price)/bua.built_area) as decimal(10,2)) as 'novoPreço/m²',
+cast((((pc.new_price)/bua.built_area)-((pc.old_price)/bua.built_area)) as decimal(10,2)) as 'aumentoPreço/m²',
+cast(avg((((pc.new_price-pc.old_price)/bua.built_area)/((pc.old_price)/bua.built_area))*100) as decimal(10,2)) as 'percentual_aumento_médio_preço/m²',
 cast(avg((((pc.new_price-pc.old_price)/bua.built_area)/((pc.old_price)/bua.built_area))*100) as decimal(10,2)) as 'Percentual_médio_de_aumento_de_preço_por_m²_desses_imóveis'
 from price_changes pc
 inner join built_used_area bua
@@ -47,9 +47,9 @@ where pc.new_price < pc.old_price and pc.change_date between '2016-01-01' and '2
 
 select
 count(pc.listing_id) as 'Número_de_imóveis_com_redução_de_preço_em_2016',
-((pc.new_price)/bua.built_area) as 'novoPreço/m²',
-((pc.old_price)/bua.built_area) as 'velhoPreço/m²',
-(((pc.old_price)/bua.built_area)-((pc.new_price)/bua.built_area)) as 'Valor_redução_preço/m²',
+cast(((pc.old_price)/bua.built_area) as decimal(10,2)) as 'velhoPreço/m²',
+cast(((pc.new_price)/bua.built_area) as decimal(10,2)) as 'novoPreço/m²',
+cast((((pc.old_price)/bua.built_area)-((pc.new_price)/bua.built_area)) as decimal(10,2)) as 'Valor_redução_preço/m²',
 avg((((pc.old_price-pc.new_price)/bua.built_area)/((pc.old_price)/bua.built_area))*100) as 'percentual_redução_médio_preço/m²',
 cast(avg((((pc.old_price-pc.new_price)/bua.built_area)/((pc.old_price)/bua.built_area))*100) as decimal(10,2)) as 'Percentual_médio_de_redução_de_preço_por_m²_desses_imóveis'
 from price_changes pc
