@@ -34,8 +34,6 @@ on (pc.listing_id = bua.listing_id)
 where pc.new_price > pc.old_price and pc.change_date between '2016-01-01' and '2016-12-31';
 
 
-
-
 -- 3. Contar o número de imóveis que tiveram um decréscimo de preço em 2016 e a diminuição média da porcentagem de preço/m2 desses imóveis;
 /*select
 count(pc.listing_id) as 'Número_de_imóveis_com_redução_de_preço_em_2016',
