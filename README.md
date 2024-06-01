@@ -1,4 +1,4 @@
-# Database from Instituto Atlântico
+# Database challenge from Instituto Atlântico
 
 *This repository keeps a set of queries to search very specific information in a MySQL database!*
 
